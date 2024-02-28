@@ -4,7 +4,6 @@ import profile from "../../../../public/assets/selectImage.png";
 import instance from '@/hooks/instance';
 import { useImageUpload } from '@/hooks/fileUpload';
 
-
 const AddNewCars = () => {
 
   const { imageFileInputRef, selectedImage, handleImageClick, handleImageFileChange } = useImageUpload();
@@ -13,11 +12,8 @@ const AddNewCars = () => {
 
     e.preventDefault();
 
-
     const form = e.target as HTMLFormElement;
     const image = imageFileInputRef?.current?.files?.[0];
-
-
     const company = form.company.value;
     const brand = form.brand.value;
     const model = form.model.value;
@@ -47,8 +43,7 @@ const AddNewCars = () => {
 
 
   return (
-    <>
-
+    
       <>
         <div className='container m-auto'>
           <div className="shadow-card p-[30px]  w-[100%] lg:w-[60%] m-auto">
@@ -171,8 +166,7 @@ const AddNewCars = () => {
           </div>
         </div>
       </>
-
-    </>
+      
   )
 }
 
