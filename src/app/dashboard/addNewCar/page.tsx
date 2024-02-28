@@ -4,9 +4,10 @@ import profile from "../../../../public/assets/selectImage.png";
 import instance from '@/hooks/instance';
 import { useImageUpload } from '@/hooks/fileUpload';
 
+
 const AddNewCars = () => {
 
-  // const { imageFileInputRef, selectedImage, handleImageClick, handleImageFileChange } = useImageUpload();
+  const { imageFileInputRef, selectedImage, handleImageClick, handleImageFileChange } = useImageUpload();
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
@@ -14,8 +15,7 @@ const AddNewCars = () => {
 
 
     const form = e.target as HTMLFormElement;
-    // const image = imageFileInputRef?.current?.files?.[0];
-
+    const image = imageFileInputRef?.current?.files?.[0];
 
 
     const company = form.company.value;
@@ -27,7 +27,7 @@ const AddNewCars = () => {
 
     const formData: any = new FormData();
 
-    // formData.append('image', image);
+    formData.append('image', image);
     formData.append('company', company);
     formData.append('brand', brand);
     formData.append('model', model);
@@ -53,7 +53,7 @@ const AddNewCars = () => {
         <div className='container m-auto'>
           <div className="shadow-card p-[30px]  w-[100%] lg:w-[60%] m-auto">
             <h1 className='text-center mb-[20px]'>Add a new Truck</h1>
-            <form>
+            <form onSubmit={handleFormSubmit}>
               <div className="grid grid-cols-12 gap-5 add_driver">
                 <div className='relative col-span-12'>
                   <label htmlFor="">Select Truck Photo</label>
@@ -61,26 +61,26 @@ const AddNewCars = () => {
                   <div className='border h-[150px] rounded-[5px] cursor-pointer' >
                     <div className='absolute right-[35%] top-[45%] text-center my-auto ' >
                       <div className='underline text-[#7155E1] cursor-pointer '
-                      //  onClick={handleImageClick}
+                       onClick={handleImageClick}
                       >
                         <p className='text-[14px]'>Brows photo</p></div>
                       <p>Supports: *.png, *.jpg and *.jpeg</p>
                     </div>
                     <div className="m-auto mb-[20px] left-[2%] top-[32%]" style={{ position: 'absolute', width: '100px', height: '100px' }}>
                       <Image
-                        // src={selectedImage || profile}
-                        src=""
+                        src={selectedImage || profile}
+                     
                         alt="Selected"
                         layout="fill"
                         objectFit="cover"
-                        // onClick={handleImageClick}
+                        onClick={handleImageClick}
                         style={{ borderRadius: "5px" }}
                       />
                     </div>
                     <input
                       type="file"
-                      // ref={imageFileInputRef}
-                      // onChange={handleImageFileChange}
+                      ref={imageFileInputRef}
+                      onChange={handleImageFileChange}
                       name='image'
                       id='image'
                       style={{ display: 'none' }}
@@ -96,8 +96,8 @@ const AddNewCars = () => {
                     type="text"
                     className=''
                     placeholder='Enter company name'
-                    //value={formData.company}
-                    //onChange={handleInputChange}
+                    // value={formData.company}
+                    // onChange={handleInputChange}
                     name='company'
                     id='company'
                   />
@@ -108,8 +108,8 @@ const AddNewCars = () => {
                     type="text"
                     className=''
                     placeholder='Enter brand name'
-                    //value={formData.brand}
-                    //onChange={handleInputChange}
+                    // value={formData.brand}
+                    // onChange={handleInputChange}
                     name='brand'
                     id='brand'
                   />
@@ -120,8 +120,8 @@ const AddNewCars = () => {
                     type="text"
                     className=''
                     placeholder='Enter car model'
-                    //value={formData.model}
-                    //onChange={handleInputChange}
+                    // value={formData.model}
+                    // onChange={handleInputChange}
                     name='model'
                     id='model'
                   />
@@ -133,8 +133,8 @@ const AddNewCars = () => {
                     type="text"
                     className=''
                     placeholder='Enter license plate number'
-                    //value={formData.licensePlate}
-                    //onChange={handleInputChange}
+                    // value={formData.licensePlate}
+                    // onChange={handleInputChange}
                     name='licensePlate'
                     id='licensePlate'
                   />
@@ -145,8 +145,8 @@ const AddNewCars = () => {
                     type="number"
                     className=''
                     placeholder='Enter year'
-                    //value={formData.year}
-                    //onChange={handleInputChange}
+                    // value={formData.year}
+                    // onChange={handleInputChange}
                     name='year'
                     id='year'
                   />
@@ -157,8 +157,8 @@ const AddNewCars = () => {
                     type="number"
                     className=''
                     placeholder='Enter VIN Number'
-                    //value={formData.vinNumber}
-                    //onChange={handleInputChange}
+                    // value={formData.vinNumber}
+                    // onChange={handleInputChange}
                     name='vinNumber'
                     id='vinNumber'
                   />
