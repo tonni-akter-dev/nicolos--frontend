@@ -10,22 +10,22 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import instance from "@/hooks/instance";
 
-const signUp = () => {
-  const navigate = useRouter()
+const SignUp = () => { // Renamed from signUp to SignUp
+  const navigate = useRouter();
   const [passwordShow, setPasswordShow] = useState(false);
 
-  const [userData, setUserData] = useState<any>([{
+  const [userData, setUserData] = useState({
     fullName: "",
     role: "Owner",
     email: "",
     password: "",
     address: "",
     phoneNumber: "",
-  }]);
+  });
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
-    setUserData((prevData: any) => ({
+    setUserData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -37,22 +37,20 @@ const signUp = () => {
     try {
       const response = await instance.post("/api/user/signup", userData);
       console.log(response.data);
-      setUserData(
-        {
-          fullName: "",
-          role: "",
-          email: "",
-          password: "",
-          address: "",
-          phoneNumber: "",
-        }
-      )
-      navigate.push('/login')
-
-    } catch (error: any) {
+      setUserData({
+        fullName: "",
+        role: "",
+        email: "",
+        password: "",
+        address: "",
+        phoneNumber: "",
+      });
+      navigate.push('/login');
+    } catch (error) {
       // console.error("Registration failed:", error.message);
     }
   };
+
 
   return (
     <div className="w-full mt-[100px] mx-auto">
@@ -155,4 +153,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;

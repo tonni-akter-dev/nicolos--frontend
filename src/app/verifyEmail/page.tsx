@@ -8,7 +8,7 @@ import Link from "next/link";
 import login from "../../../public/assets/login.jpg";
 import '../../app/globals.scss'
 
-const verifyEmail = () => {
+const VerifyEmail = () => {
   return (
     <div className="w-full mt-[100px] mx-auto">
       <div className="grid items-center w-full grid-cols-2 my-auto">
@@ -49,7 +49,7 @@ const verifyEmail = () => {
               ))}
             </div>
             <p className="mb-5 text-base font-medium text-secondary lg:mb-10">
-              Can't find the code? Please check your spam folder.
+              Cant find the code? Please check your spam folder.
             </p>
             <Link href="/verifiedSuccess">
               <PrimaryBtn>Verify Email</PrimaryBtn>
@@ -61,4 +61,4 @@ const verifyEmail = () => {
   );
 };
 
-export default verifyEmail;
+export default VerifyEmail;

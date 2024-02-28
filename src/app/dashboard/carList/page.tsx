@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 import car from "../../../../public/assets/car.png";
 import Image from "next/image";
@@ -38,7 +39,7 @@ const carList = () => {
                 <div className="container mx-[50px] w-full">
                     <div className="grid grid-cols-12 gap-4 lg:grid-cols-4">
                         {data.map((details) => (
-                            <CarDetails  details={details} handleSelectChange={handleSelectChange} selectedValue={selectedValue} />
+                            <CarDetails key={details}  details={details} handleSelectChange={handleSelectChange} selectedValue={selectedValue} />
                         ))}
 
                     </div>

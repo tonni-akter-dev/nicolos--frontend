@@ -29,7 +29,7 @@ const DriverDetails = () => {
       }
     };
     fetchUsers();
-  }, []);
+  }, [id]);
 
   return (
     <div className="p-[50px]">

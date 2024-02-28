@@ -61,7 +61,7 @@ const AuthorizationRequest = () => {
             }
         };
         fetchUsers();
-    }, []);
+    }, [id]);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
