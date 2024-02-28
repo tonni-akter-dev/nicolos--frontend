@@ -1,0 +1,332 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+$primary: #7155E1;
+$secondary: #FF2727;
+$black: #1A1919;
+$green: #52C93F;
+$gray01: #525256;
+$gray02: #656575;
+$gray03: #A3A3A3;
+$gray04: #F8F7F1;
+$blue: #1E1B4B;
+$shadow: 0px 8px 24px 0px rgba(69, 69, 80, 0.1);
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: 300ms;
+  outline: none;
+}
+
+html,
+body {
+  font-family: 'Inter', sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  font-style: 1rem;
+  line-height: 150%;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: clamp(1.25rem, -0.737rem + 4.1451vw, 1.75rem);
+  line-height: 142%;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 150%;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: clamp(1rem, 0.5032rem + 1.0363vw, 1.125rem);
+  line-height: 133%;
+  font-weight: 500;
+}
+
+@mixin h3 {
+  font-size: 1.125rem;
+  line-height: 133%;
+  font-weight: 500;
+}
+
+h4 {
+  font-style: 1rem;
+  line-height: 150%;
+  font-weight: 600;
+}
+
+h5 {
+  font-style: 0.875rem;
+  line-height: 115%;
+}
+
+h6 {
+  font-style: 0.875rem;
+  line-height: 170%;
+}
+
+.p4 {
+  font-weight: 300;
+  font-style: 1rem;
+  line-height: 150%;
+}
+
+.p5 {
+  font-size: 0.75rem;
+  line-height: 133%;
+  font-weight: 400;
+  color: $black;
+}
+
+.add_driver label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.add_driver input {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  height: 46px;
+}
+
+.common_button {
+  height: 48px;
+  width: 221px;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+  background: #1E1B4B;
+  color: #fff;
+  border: none;
+  margin-top: 20px;
+  border-radius: 8px;
+
+
+  &:hover {
+    background-color: #4f4d78;
+  }
+
+
+}
+
+// car list
+
+.searchResults {
+  margin-top: 150px;
+}
+
+.card_header select {
+  background-color: #fff;
+  color: black;
+  width: 100px;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Ruda', sans-serif;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.card {
+  padding: 20px;
+  box-shadow:
+    100px 100px 80px rgba(0, 0, 0, 0.02);
+  border: 1px solid #7155E1 !important;
+  max-width: 380px;
+  width: 100%;
+}
+
+.card_header img {
+  border-radius: 5px;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #eaeaea;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.ratings img {
+  height: 100%;
+  width: 20px;
+}
+
+.card_body p {
+  color: #7155E1;
+}
+
+.car_title {
+  margin-top: 12px;
+}
+
+.car_title h5 {
+
+  font-weight: bold;
+}
+
+.car_title p span {
+  font-weight: bold;
+}
+
+.card_body button {
+  background-color: #7155E1;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+// login page
+
+.auth_layout{
+  max-width: 800px;
+  width: 100%;
+}
+
+.auth_layout input {
+  border-radius: var(--border-radius-full, 9999px);
+  border: 1px solid var(--slate-200, #E2E8F0);
+  background: var(--slate-50, #F8FAFC);
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 10px;
+}
+.auth_layout select {
+  border-radius: var(--border-radius-full, 9999px);
+  border: 1px solid var(--slate-200, #E2E8F0);
+  background: var(--slate-50, #F8FAFC);
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 10px;
+}
+
+.auth_layout label {
+  color: var(--Text-Primary, var(--colors-slate-950, #020617));
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+.email_verify input {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--slate-50, #F8FAFC);
+
+}
+
+.icon {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: black !important;
+}
+
+.shadow-card {
+  border: none;
+  background-color: var(--bs-card-bg-color);
+  box-shadow: 0 2px 48px 0 rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
+
+
+// requested list
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+// driver details 
+.qd-table tbody tr td:first-child {
+  padding-left: 0px !important;
+}
+
+.qd-table>:not(caption)>*>* {
+  padding: 1rem 0.5rem !important;
+  border-bottom-style: dashed;
+}
+
+.common_text {
+  font-size: 16px;
+  color: #9499A1;
+}
+
+// menubtn
+
+.menuBtn {
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: #fff;
+  opacity: 0.75;
+  display: flex;
+  gap: 12px;
+  position: relative;
+
+  &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &.active {
+      background-color: $primary;
+      opacity: 1;
+  }
+
+  .bar {
+      position: absolute;
+      width: 6px;
+      background-color: #fff;
+      height: 36px;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      border-radius: 4px;
+  }
+}
+
+.dashboard {
+  width: 100%;
+  position: relative;
+}
