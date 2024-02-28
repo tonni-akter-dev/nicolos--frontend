@@ -8,12 +8,16 @@ import Logout from "../../../public/assets/Logout.svg";
 import Settings from "../../../public/assets/Settings.svg";
 import MenuBtn from "../menuBtn/MenuBtn";
 import "./sidebar.scss";
+import { useRouter } from 'next/navigation'
 
 import Link from "next/link";
 
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import instance from "@/hooks/instance";
 
 const Sidebar: React.FC = () => {
+
+  const router = useRouter()
 
   const [activeLink, setActiveLink] = useState("/");
   const [isOpen, setIsOpen] = useState(false);
@@ -44,27 +48,50 @@ const Sidebar: React.FC = () => {
   };
   // get the user 
 
-  const [role, setRole ] = useState();
-  
-useEffect(()=>{
-  if(typeof window !== 'undefined'){
-    const userData: any = JSON.parse(localStorage.getItem('user') || 'null');
-    console.log('userData',userData)
-    
-    const role =userData?.user?.role[0]
-    setRole(role)
-  }
-  
-},[])
+  const [role, setRole] = useState();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const userData: any = JSON.parse(localStorage.getItem('user') || 'null');
+      // console.log('userData', userData)
+
+      const role = userData?.user?.role[0]
+      setRole(role)
+    }
+
+  }, [])
 
 
 
 
-  
+
   const handleLoggedOut = (e: any) => {
     e.preventDefault()
-    // localStorage.removeItem('user')
+    localStorage.removeItem('user')
+    router.push('/dashboard')
+
   }
+
+
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await instance.get('/api/authorization/allRequest');
+  //       console.log(response.data)
+
+  //       const filteredData: any = response.data.filter((item: any) =>
+  //         item.authorizationState[0].includes('In practice')
+  //       );
+  //       setInPracticeData("filteredData", filteredData);
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
+
 
 
   return (

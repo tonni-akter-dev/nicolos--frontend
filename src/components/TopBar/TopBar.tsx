@@ -15,7 +15,7 @@ const TopBar = () => {
     // const userDataString : any = {};
     if (userDataString) {
       const userData = JSON.parse(userDataString);
-      console.log('userData',userData)
+      // console.log('userData',userData)
       setData(userData?.user);
     }
   }, []);

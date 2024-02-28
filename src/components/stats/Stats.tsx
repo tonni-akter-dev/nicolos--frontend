@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./stats.scss";
 import { useDriverContext } from "@/hooks/driverContext";
 import { useTruckContext } from "@/hooks/truckContext";
+import instance from "@/hooks/instance";
 
 const Stats = () => {
 
@@ -31,11 +32,12 @@ const Stats = () => {
 
   const [driverDataList, setDriverDataList] = useState<any>()
   const [truckDataList, setTruckDataList] = useState<any>()
-
+  const [initialValue, setInitialValue] = useState(null);
+  const [inPracticeData, setInPracticeData] = useState([]);
 
   useEffect(() => {
     if (driverContext && driverContext.data) {
-      const driverData = driverContext.data.filter((data:any) => data.role.includes("Driver"));
+      const driverData = driverContext.data.filter((data: any) => data.role.includes("Driver"));
       setDriverDataList(driverData)
     }
   }, [driverContext]);
@@ -44,10 +46,31 @@ const Stats = () => {
     setTruckDataList(truckContext?.data?.length)
     // console.log(truckDataList)
   }, [truckContext]);
-  
+
   const totalDriver = driverDataList?.length;
 
-// all get request
+
+
+  // all get request
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await instance.get('/api/authorization/allRequest');
+        setInitialValue(response.data);
+
+      } catch (error) {
+        console.error('Error fetching data from the database:', error);
+      }
+    };
+    const filteredData: any = initialValue?.data?.filter((item: any) =>
+      item.authorizationState[0].includes('In practice')
+    );
+    console.log(filteredData, "filteresdlskdjl")
+    setInPracticeData(filteredData)
+
+    fetchData();
+  }, [initialValue]);
+
 
   return (
 
@@ -75,7 +98,7 @@ const Stats = () => {
               <h6 className="text-white mb-0 pt-[15px] text-[20px] fw-bold ">Total drivers
               </h6>
             </div>
-            <div className="status_Card rounded-[5px]  text-center">  
+            <div className="status_Card rounded-[5px]  text-center">
               <h1 className="mb1">{totalDriver}</h1>
             </div>
           </div>
@@ -88,7 +111,11 @@ const Stats = () => {
               </h6>
             </div>
             <div className="status_Card rounded-[5px]  text-center">
-              <h1 className="mb1">25</h1>
+              <h1 className="mb1">
+                {inPracticeData?.length}
+
+
+              </h1>
             </div>
           </div>
         </div>
