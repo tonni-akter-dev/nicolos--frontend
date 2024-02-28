@@ -33,11 +33,9 @@ const Stats = () => {
   const [truckDataList, setTruckDataList] = useState<any>()
 
 
-
   useEffect(() => {
     if (driverContext && driverContext.data) {
       const driverData = driverContext.data.filter((data:any) => data.role.includes("Driver"));
-      // console.log("driverData", driverData);
       setDriverDataList(driverData)
     }
   }, [driverContext]);
@@ -51,11 +49,6 @@ const Stats = () => {
 
 // all get request
 
-
-
-
-
-  
   return (
 
     <div className="container ">

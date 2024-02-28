@@ -10,13 +10,8 @@ export const UserProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Simulate asynchronous initialization (e.g., fetching user data from an API)
         const initializeUser = async () => {
             try {
-                // Perform asynchronous data fetching or initialization here
-                // For example:
-                // const userData = await fetchUserData();
-                // setUser(userData);
             } catch (error) {
                 console.error('Error initializing user:', error);
             } finally {
@@ -25,25 +20,20 @@ export const UserProvider = ({ children }) => {
         };
 
         initializeUser();
-
-        // Clean-up function (if needed)
         return () => {
-            // Perform any clean-up actions here
+
         };
-    }, []); // Empty dependency array ensures this effect runs only once on mount
+    }, []);
 
     const login = (userData) => {
-        // Perform asynchronous state update
         setUser(userData);
     };
 
     const logout = () => {
-        // Perform asynchronous state update
         setUser(null);
     };
 
     if (loading) {
-        // Optionally, you can render a loading indicator while initializing the user
         return <div>Loading...</div>;
     }
 
