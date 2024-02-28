@@ -32,8 +32,6 @@ const Stats = () => {
 
   const [driverDataList, setDriverDataList] = useState<any>()
   const [truckDataList, setTruckDataList] = useState<any>()
-  const [initialValue, setInitialValue] = useState(null);
-  const [inPracticeData, setInPracticeData] = useState([]);
 
   useEffect(() => {
     if (driverContext && driverContext.data) {
@@ -44,32 +42,36 @@ const Stats = () => {
 
   useEffect(() => {
     setTruckDataList(truckContext?.data?.length)
-    // console.log(truckDataList)
   }, [truckContext]);
 
   const totalDriver = driverDataList?.length;
 
+  const [initialValue, setInitialValue] = useState<any>(null);
+  const [inPracticeData, setInPracticeData] = useState([]);
 
-
-  // all get request
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await instance.get('/api/authorization/allRequest');
         setInitialValue(response.data);
-
       } catch (error) {
         console.error('Error fetching data from the database:', error);
       }
     };
-    const filteredData: any = initialValue?.data?.filter((item: any) =>
-      item.authorizationState[0].includes('In practice')
-    );
-    console.log(filteredData, "filteresdlskdjl")
-    setInPracticeData(filteredData)
 
     fetchData();
+
+  }, []);
+
+  useEffect(() => {
+    if (initialValue && initialValue.data) {
+      const filteredData = initialValue.data.filter((item: any) =>
+        item.authorizationState[0].includes('In practice')
+      );
+      setInPracticeData(filteredData);
+    }
   }, [initialValue]);
+
 
 
   return (
@@ -127,7 +129,10 @@ const Stats = () => {
               </h6>
             </div>
             <div className="status_Card rounded-[5px]  text-center">
-              <h1 className="mb1">10</h1>
+              <h1 className="mb1">
+                {initialValue?.data?.length}
+
+              </h1>
             </div>
           </div>
         </div>
