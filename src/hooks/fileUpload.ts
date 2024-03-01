@@ -1,5 +1,5 @@
 "use client";
-import { RefObject, useRef, ChangeEvent, useState } from "react";
+import React, { RefObject, useRef, ChangeEvent, useState } from "react";
 
 interface ImageHookResult {
   imageFileInputRef: RefObject<HTMLInputElement>;
@@ -38,4 +38,4 @@ const useImageUpload = (): ImageHookResult => {
   };
 };
 
-export { useImageUpload };
+export default useImageUpload;

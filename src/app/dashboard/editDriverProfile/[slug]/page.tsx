@@ -4,7 +4,7 @@ const numCols: number = 10;
 import Image from "next/image";
 import profile from "../../../../../public/assets/profile.png";
 import { FiCamera } from "react-icons/fi";
-import { useImageUpload } from "@/hooks/fileUpload";
+import  useImageUpload  from "@/hooks/fileUpload";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import instance from "@/hooks/instance";

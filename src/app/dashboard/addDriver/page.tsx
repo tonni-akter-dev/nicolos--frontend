@@ -9,7 +9,7 @@ import profile from "../../../../public/assets/profile.png";
 import { FiCamera } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { useDriverContext } from "@/hooks/driverContext";
-import { useImageUpload } from "@/hooks/fileUpload";
+import  useImageUpload  from "@/hooks/fileUpload";
 
 
 const AddDrivers = () => {
