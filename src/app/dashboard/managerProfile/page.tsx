@@ -8,7 +8,6 @@ import { MdOutlineEmail } from "react-icons/md";
 import Link from "next/link";
 import instance from "@/hooks/instance";
 import { useEffect, useState } from "react";
-import RequireAuth from "@/hooks/RequireAuth";
 
 
 const ManagerProfile = () => {
@@ -143,4 +142,4 @@ const ManagerProfile = () => {
   )
 }
 
-export default RequireAuth(ManagerProfile)
+export default ManagerProfile

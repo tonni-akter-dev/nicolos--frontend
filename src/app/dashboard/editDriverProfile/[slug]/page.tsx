@@ -8,7 +8,6 @@ import useImageUpload from "@/hooks/fileUpload";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import instance from "@/hooks/instance";
-import RequireAuth from "@/hooks/RequireAuth";
 import toast from "react-hot-toast";
 
 const EditDriverProfile = () => {
@@ -285,7 +284,7 @@ const EditDriverProfile = () => {
     )
 }
 
-export default RequireAuth(EditDriverProfile)
+export default EditDriverProfile
 
 
 const useSecondImageUpload = () => {

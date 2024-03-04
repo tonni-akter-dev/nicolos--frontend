@@ -9,7 +9,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import instance from "@/hooks/instance";
 import { useParams } from "next/navigation";
-import RequireAuth from "@/hooks/RequireAuth";
 
 
 const DriverDetails = () => {
@@ -184,4 +183,4 @@ const DriverDetails = () => {
   );
 };
 
-export default RequireAuth(DriverDetails);
+export default DriverDetails;

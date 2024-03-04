@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import instance from "@/hooks/instance";
-import RequireAuth from "@/hooks/RequireAuth";
 import NoDataFound from "@/components/NoDataFound/NoDataFound";
 
 const carList = () => {
@@ -54,7 +53,7 @@ const carList = () => {
     );
 };
 
-export default RequireAuth(carList);
+export default carList;
 
 
 

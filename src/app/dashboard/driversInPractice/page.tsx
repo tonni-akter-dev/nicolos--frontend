@@ -17,7 +17,6 @@ import { MdDelete } from "react-icons/md";
 import { useEffect, useState } from "react";
 import instance from "@/hooks/instance";
 import { useParams } from "next/navigation";
-import RequireAuth from "@/hooks/RequireAuth";
 
 const DriversInPractice = () => {
 
@@ -173,4 +172,4 @@ const DriversInPractice = () => {
     );
 };
 
-export default RequireAuth(DriversInPractice);
+export default DriversInPractice;

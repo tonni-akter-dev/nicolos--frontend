@@ -1,7 +1,6 @@
 'use client'
 import Stats from "@/components/stats/Stats";
 import Head from "next/head";
-import RequireAuth from "../../hooks/RequireAuth";
 
 
 
@@ -19,4 +18,4 @@ const Dashboard = () => {
     </>
   )
 }
-export default RequireAuth(Dashboard)
+export default Dashboard
