@@ -82,7 +82,7 @@ const Drivers = () => {
 
                               src={
                                 user?.image
-                                  ? `http://localhost:4000/api/uploads/public/images/${user?.image}`
+                                  ? `https://nicolos-backend.onrender.com/api/uploads/public/images/${user?.image}`
                                   : driver1
                               }
                               width={50}
@@ -98,11 +98,11 @@ const Drivers = () => {
                         <td className="px-6 py-4">{user?.phoneNumber}</td>
                         <td>
                           <div className="p-2 border rounded-lg w-fit ">
-                            <button className="flex items-center gap-2" onClick={() => downloadImage(`http://localhost:4000/api/uploads/public/images/${user?.drivingLicense}`)}>
+                            <button className="flex items-center gap-2" onClick={() => downloadImage(`https://nicolos-backend.onrender.com/api/uploads/public/images/${user?.drivingLicense}`)}>
                               {/* <FaFilePdf className="text-[14px] h-[10px]" /> */}
                               <Image
                                 className="w-[40px] h-[40px] rounded-full"
-                                src={user?.drivingLicense ? `http://localhost:4000/api/uploads/public/images/${user?.drivingLicense}` : driver1}
+                                src={user?.drivingLicense ? `https://nicolos-backend.onrender.com/api/uploads/public/images/${user?.drivingLicense}` : driver1}
                                 width={50}
                                 height={50}
                                 alt="driver1"

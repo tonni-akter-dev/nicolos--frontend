@@ -102,7 +102,7 @@ const EditDriverProfile = () => {
                         <Image
                             src={
                                 userData?.image
-                                    ? `http://localhost:4000/api/uploads/public/images/${userData?.image}`
+                                    ? `https://nicolos-backend.onrender.com/api/uploads/public/images/${userData?.image}`
                                     : selectedImage ? selectedImage : profile
                             }
                             alt="Selected"

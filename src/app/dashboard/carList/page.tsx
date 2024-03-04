@@ -71,7 +71,7 @@ function CarDetails({ details, handleSelectChange }: any) {
                 </div>
                 <Image height={200} width={200} src={
                     details && details?.image
-                        ? `http://localhost:8000/api/uploads/${details?.image}`
+                        ? `https://nicolos-backend.onrender.com/api/uploads/${details?.image}`
                         : car
                 } alt="car" />
 

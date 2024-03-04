@@ -3,7 +3,6 @@
 import Image from "next/image";
 import profile from "../../../../public/assets/profile.png";
 
-
 import { ChangeEvent, useRef, useState } from "react";
 import { FiCamera } from "react-icons/fi";
 
