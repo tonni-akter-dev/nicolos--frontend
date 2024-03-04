@@ -48,15 +48,16 @@ const Sidebar: React.FC = () => {
   };
   // get the user 
 
-  const [role, setRole] = useState();
+  const [role, setRole] = useState<any>();
+  const [user, setUser] = useState<any>({});
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const userData: any = JSON.parse(localStorage.getItem('user') || 'null');
-      // console.log('userData', userData)
-
       const role = userData?.user?.role[0]
       setRole(role)
+      setUser(userData.user)
+
     }
 
   }, [])
@@ -465,10 +466,10 @@ const Sidebar: React.FC = () => {
             />
             {role !== 'Manager' && <MenuBtn
               icon={Bell}
-              link="/dashboard/driverDetails"
+              link={`/dashboard/driverDetails/${user?._id}`}
               text="My Profile"
-              isActive={activeLink === "/driverDetails"}
-              onClick={() => setActiveLink("/driverDetails")}
+              isActive={activeLink === `/dashboard/driverDetails/${user?._id}`}
+              onClick={() => setActiveLink(`/dashboard/driverDetails/${user?._id}`)}
             />}
             <MenuBtn
               icon={Settings}

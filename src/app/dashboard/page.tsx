@@ -5,7 +5,7 @@ import RequireAuth from "../../hooks/RequireAuth";
 
 
 
-const Home = () => {
+const Dashboard = () => {
 
   return (
     <>
@@ -17,6 +17,6 @@ const Home = () => {
         <Stats />
       </div>
     </>
-  ) 
+  )
 }
-export default RequireAuth(Home)
+export default RequireAuth(Dashboard)

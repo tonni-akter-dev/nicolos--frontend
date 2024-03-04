@@ -10,13 +10,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import instance from "@/hooks/instance";
 
-const SignUp = () => { // Renamed from signUp to SignUp
+const SignUp = () => {
   const navigate = useRouter();
   const [passwordShow, setPasswordShow] = useState(false);
 
   const [userData, setUserData] = useState({
     fullName: "",
-    role: "Owner",
+    role: "",
     email: "",
     password: "",
     address: "",
@@ -45,7 +45,7 @@ const SignUp = () => { // Renamed from signUp to SignUp
         address: "",
         phoneNumber: "",
       });
-      navigate.push('/login');
+      navigate.push('/');
     } catch (error) {
       // console.error("Registration failed:", error.message);
     }
@@ -68,6 +68,8 @@ const SignUp = () => { // Renamed from signUp to SignUp
                 </label>
                 <input
                   type="text"
+                  required
+
                   id="name"
                   name="fullName"
                   value={userData.fullName}
@@ -79,6 +81,8 @@ const SignUp = () => { // Renamed from signUp to SignUp
                   Role
                 </label> <br />
                 <select
+                  required
+
                   name="role"
                   id="role"
                   value={userData.role}
@@ -95,6 +99,8 @@ const SignUp = () => { // Renamed from signUp to SignUp
                   Email
                 </label>
                 <input
+                  required
+
                   type="email"
                   name="email"
                   value={userData.email}
@@ -107,6 +113,8 @@ const SignUp = () => { // Renamed from signUp to SignUp
                 </label>
                 <div className="relative">
                   <input
+                    required
+
                     type={passwordShow ? "text" : "password"}
                     name="password"
                     value={userData.password}
@@ -125,7 +133,9 @@ const SignUp = () => { // Renamed from signUp to SignUp
                 <label htmlFor="name">
                   Address
                 </label>
-                <input type="text" name="address"
+                <input
+                  required
+                  type="text" name="address"
                   value={userData.address}
                   onChange={handleInputChange} />
               </div>
@@ -134,7 +144,9 @@ const SignUp = () => { // Renamed from signUp to SignUp
                 <label htmlFor="name">
                   Phone Number
                 </label>
-                <input type="text"
+                <input
+                  required
+                  type="text"
                   name="phoneNumber"
                   value={userData.phoneNumber}
                   onChange={handleInputChange}
@@ -143,7 +155,7 @@ const SignUp = () => { // Renamed from signUp to SignUp
             </div>
             <div className="flex items-end justify-end gap-4 mb-[10px] ">
 
-              Already have an account? <Link href="/login" className='font-bold'>Login.</Link>
+              Already have an account? <Link href="/" className='font-bold'>Login.</Link>
             </div>
             <PrimaryBtn>Create Account</PrimaryBtn>
           </form>

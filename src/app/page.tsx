@@ -13,10 +13,10 @@ import instance from '@/hooks/instance';
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast';
 
-interface loginType  {
+interface loginType {
     email: string,
-    password:string
-}
+    password: string
+}   
 
 const Homepage = () => {
 
@@ -38,10 +38,15 @@ const Homepage = () => {
     };
 
     const handleLogin = async (e: any) => {
+        
+        console.log('login button cliecked')
+        
         e.preventDefault();
+
         try {
             const response = await instance.post('/api/user/login', formData);
             console.log(response.data);
+            
             localStorage.setItem('user', JSON.stringify(response.data))
             toast.success('Login Successfull!')
             router.push('/dashboard')
@@ -49,6 +54,7 @@ const Homepage = () => {
             console.error("Login failed:", error);
         }
     };
+    
     return (
         <>
             <div className="w-full mt-[100px] mx-auto">
@@ -69,6 +75,7 @@ const Homepage = () => {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleInputChange}
+                                    required
                                 />
                             </div>
                             <div className="mb-6">
@@ -82,6 +89,7 @@ const Homepage = () => {
                                         name="password"
                                         value={formData.password}
                                         onChange={handleInputChange}
+                                        required
                                     />
                                     <Image
                                         onClick={() => setPasswordShow(!passwordShow)}
