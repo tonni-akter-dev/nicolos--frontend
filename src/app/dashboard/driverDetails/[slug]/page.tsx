@@ -31,7 +31,7 @@ const DriverDetails = () => {
     };
     fetchUsers();
   }, [id]);
-  console.log(user)
+
 
   return (
     <div className="p-[50px]">
