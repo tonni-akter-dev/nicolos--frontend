@@ -6,6 +6,7 @@ import profile from "../../../../public/assets/profile.png";
 
 import { ChangeEvent, useRef, useState } from "react";
 import { FiCamera } from "react-icons/fi";
+import RequireAuth from "@/hooks/RequireAuth";
 
 const EditManagerProfile = () => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -133,4 +134,4 @@ const EditManagerProfile = () => {
     )
 }
 
-export default EditManagerProfile
+export default RequireAuth(EditManagerProfile)

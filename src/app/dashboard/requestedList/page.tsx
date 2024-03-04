@@ -5,6 +5,7 @@ import { FaFilePdf } from "react-icons/fa6";
 import Modal from 'react-modal';
 import { IoMdClose } from "react-icons/io";
 import instance from '@/hooks/instance';
+import RequireAuth from '@/hooks/RequireAuth';
 
 
 const customStyles = {
@@ -218,4 +219,4 @@ const RequestedList = () => {
     )
 }
 
-export default RequestedList
+export default RequireAuth(RequestedList)

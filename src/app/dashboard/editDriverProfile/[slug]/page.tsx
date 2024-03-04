@@ -8,6 +8,7 @@ import useImageUpload from "@/hooks/fileUpload";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import instance from "@/hooks/instance";
+import RequireAuth from "@/hooks/RequireAuth";
 
 const EditDriverProfile = () => {
 
@@ -281,7 +282,7 @@ const EditDriverProfile = () => {
     )
 }
 
-export default EditDriverProfile
+export default RequireAuth(EditDriverProfile)
 
 
 const useSecondImageUpload = () => {

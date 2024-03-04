@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import instance from "@/hooks/instance";
 import { useParams } from "next/navigation";
+import RequireAuth from "@/hooks/RequireAuth";
 
 
 const DriverDetails = () => {
@@ -33,7 +34,6 @@ const DriverDetails = () => {
 
   return (
     <div className="p-[50px]">
-    <>
       <div className="driver_details_wrapper">
         <div className="bg-[#7155E1] h-[100px] rounded-[8px] relative z-30 flex items-center justify-end mt-[50px]">
           <div>
@@ -119,7 +119,7 @@ const DriverDetails = () => {
           <div className="col-span-8 w-full p-[2rem] shadow-card ">
             <div className="">
               <h1>About</h1>
-   
+
               <h1 className="flex justify-center items-center mt-[100px] ">Not Found any details</h1>
             </div>
 
@@ -172,9 +172,8 @@ const DriverDetails = () => {
           </div>
         </div>
       </div>
-    </>
     </div>
   );
 };
 
-export default DriverDetails;
+export default RequireAuth(DriverDetails);

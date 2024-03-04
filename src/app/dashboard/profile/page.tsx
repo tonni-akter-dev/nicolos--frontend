@@ -1,5 +1,6 @@
 import Image from "next/image";
 import profilepic from "../../../../public/assets/profile.png";
+import RequireAuth from "@/hooks/RequireAuth";
 
 const profile = () => {
   return (
@@ -96,4 +97,4 @@ const profile = () => {
   )
 };
 
-export default profile;
+export default RequireAuth(profile);

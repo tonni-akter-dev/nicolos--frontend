@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import instance from "@/hooks/instance";
+import RequireAuth from "@/hooks/RequireAuth";
 
 const carList = () => {
 
@@ -52,11 +53,11 @@ const carList = () => {
     );
 };
 
-export default carList;
+export default RequireAuth(carList);
 
 
 
-function CarDetails({details,handleSelectChange,selectedValue} : any) {
+function CarDetails({details,handleSelectChange} : any) {
     return (
 
         <>
