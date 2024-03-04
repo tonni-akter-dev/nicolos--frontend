@@ -23,14 +23,15 @@ const DriverDetails = () => {
     const fetchUsers = async () => {
       try {
         const response = await instance.get(`/api/user/getUserById/${id}`);
-        setUser(response.data.data)
+        setUser(response?.data?.data)
 
-      } catch (error) {
-        // console.erro r('Error fetching users:', error.message);
+      } catch (error: any) {
+        console.error('Error fetching users:', error.message);
       }
     };
     fetchUsers();
   }, [id]);
+  console.log(user)
 
   return (
     <div className="p-[50px]">
@@ -43,9 +44,16 @@ const DriverDetails = () => {
             </Link>
           </div>
         </div>
+
         <div className="bg-[#fff] absolute me-[50px] z-40 w-[79%]">
           <div className="flex pb-5 border ">
-            <Image className="w-[180px] mt-[-60px] rounded-[14px] ms-[35px]" src={profile} alt="" />
+            <Image width={180} height={100} className="w-[180px] mt-[-60px] rounded-[14px] ms-[35px]"
+              src={
+                user && user?.image
+                  ? `http://localhost:4000/api/uploads/public/images/${user?.image}`
+                  : profile
+              }
+              alt="" />
             <div className="px-5 py-5 fw-bold">
               <p className=" text-[24px] font-bold ">{user.fullName}</p>
               <div className="flex gap-5">
@@ -119,8 +127,8 @@ const DriverDetails = () => {
           <div className="col-span-8 w-full p-[2rem] shadow-card ">
             <div className="">
               <h1>About</h1>
+              {user.about ? user.about : <h1 className="flex justify-center items-center mt-[100px] ">Not Found any details</h1>}
 
-              <h1 className="flex justify-center items-center mt-[100px] ">Not Found any details</h1>
             </div>
 
           </div>

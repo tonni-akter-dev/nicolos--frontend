@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import instance from "@/hooks/instance";
 import RequireAuth from "@/hooks/RequireAuth";
+import toast from "react-hot-toast";
 
 const EditDriverProfile = () => {
 
@@ -76,8 +77,10 @@ const EditDriverProfile = () => {
         try {
             const response = await instance.put(`/api/user/updateUserProfile/${id}`, formData);
             console.log(response.data);
-        } catch (error) {
-            // console.error("Registration failed:", error.message);
+            toast.success("Profile update successfully!")
+            formData.reset()
+        } catch (error: any) {
+            toast.error("Failed to update profile", error.message)
         }
     };
     return (

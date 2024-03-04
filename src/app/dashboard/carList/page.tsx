@@ -70,8 +70,6 @@ function CarDetails({ details, handleSelectChange }: any) {
                         {/* <option selected={details.status === "Authorized"} value="Authorized">Authorized</option> */}
                     </select>
                 </div>
-                {/* <p>{details.status}</p> */}
-
                 <Image height={200} width={200} src={
                     details && details?.image
                         ? `http://localhost:8000/api/uploads/${details?.image}`
@@ -93,11 +91,6 @@ function CarDetails({ details, handleSelectChange }: any) {
                                 <Link href="/dashboard/driverDetails"><p className="text-black">Driver name: Nicolos</p></Link>
                             </div>
                     }
-                    {/* {
-                        details.status === 'Authorized' &&
-                       
-                    } */}
-
                 </div>
             </div>
         </>

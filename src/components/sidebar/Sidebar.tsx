@@ -54,7 +54,7 @@ const Sidebar: React.FC = () => {
       const userData: any = JSON.parse(localStorage.getItem('user') || 'null');
       const role = userData?.user?.role[0]
       setRole(role)
-      setUser(userData.user)
+      setUser(userData?.user)
 
     }
 
