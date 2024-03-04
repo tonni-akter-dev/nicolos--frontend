@@ -113,7 +113,7 @@ const Drivers = () => {
                         <td className="py-4 ">Ferrari (Model-10)</td>
                         <td className="">
                           <div className="flex items-center gap-2">
-                            <Link href="/dashboard/editDriverProfile"><button>
+                            <Link href={`/dashboard/editDriverProfile/${user._id}`}><button>
                               <CiEdit className="text-[24px]" />
                             </button></Link>
 

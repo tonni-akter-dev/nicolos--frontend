@@ -13,16 +13,21 @@ import instance from '@/hooks/instance';
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast';
 
+interface loginType  {
+    email: string,
+    password:string
+}
+
 const Homepage = () => {
 
     const router = useRouter()
 
     const [passwordShow, setPasswordShow] = useState(false);
 
-    const [formData, setFormData] = useState<any>([{
+    const [formData, setFormData] = useState<loginType>({
         email: "",
         password: "",
-    }]);
+    });
 
     const handleInputChange = (e: any) => {
         const { name, value } = e.target;
@@ -33,9 +38,7 @@ const Homepage = () => {
     };
 
     const handleLogin = async (e: any) => {
-        
         e.preventDefault();
-
         try {
             const response = await instance.post('/api/user/login', formData);
             console.log(response.data);
