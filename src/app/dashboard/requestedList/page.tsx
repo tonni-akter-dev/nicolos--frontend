@@ -20,6 +20,7 @@ const customStyles = {
 };
 
 const RequestedList = () => {
+    
     const [requestsLists, setRequestsLists] = useState<any>([]);
     const [error, setError] = useState(null);
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -56,16 +57,14 @@ const RequestedList = () => {
     const handleSelectChange = async (event: any, requestId: string) => {
         const newAuthorizationState = event.target.value;
 
-        console.log(newAuthorizationState); // Log the selected value
+        console.log(newAuthorizationState); 
 
         setSelectedValue(newAuthorizationState);
 
         try {
             if (newAuthorizationState === 'In practice') {
-                // If the new state is "In practice", open the modal or take other necessary actions
                 setIsOpen(true);
             } else {
-                // For other states, update the authorization status without practice hours
                 const response = await instance.put(`/api/authorization/updateAuthorization/${requestId}`, {
                     newAuthorizationState,
                 });
@@ -111,7 +110,6 @@ const RequestedList = () => {
     return (
         <div>
             <div className="w-full driver_list_wrapper">
-
                 <div className="container mx-auto">
                     <h2 className="py-5 text-xl" >Requested List</h2>
                     <div className="shadow-card">
@@ -134,7 +132,7 @@ const RequestedList = () => {
                                         <th scope="col" className="px-6 py-[15px]">
                                             Phone Number
                                         </th>
-                                        <th>License</th>
+                                        {/* <th>License</th> */}
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -155,11 +153,11 @@ const RequestedList = () => {
                                                     <td className="px-6 py-4">{requests?.user?.fullName}</td>
                                                     <td className="px-6 py-4">{requests?.user?.email}</td>
                                                     <td className="px-6 py-4">{requests?.user?.phoneNumber}</td>
-                                                    <td>
+                                                    {/* <td>
                                                         <div className="p-2 border rounded-lg w-fit ">
                                                             <button className="flex items-center gap-2 "> <FaFilePdf className="text-[14px] h-[10px]" />pdf</button>
                                                         </div>
-                                                    </td>
+                                                    </td> */}
 
                                                     <td className="w-[130px]">
                                                         <select

@@ -9,47 +9,47 @@ import Link from "next/link";
 import instance from "@/hooks/instance";
 import { useEffect, useState } from "react";
 
+
 const ManagerProfile = () => {
-  
   const [user, setUser] = useState<any>([]);
 
-  let userData: any = null
-
-useEffect(()=>{
-  
-  if (typeof window !== 'undefined') {
-    // Perform localStorage action
-    // const item = localStorage.getItem('key')
-  userData = JSON.parse(localStorage.getItem('user') || 'null');
-  }
-},[])
-
-  
-  
-
-  // const { _id } = userData?.user;
-
   useEffect(() => {
+    let userData: any = null
+    if (typeof window !== 'undefined') {
+      
+      userData = JSON.parse(localStorage.getItem('user') || 'null');
+      
+      setUser(userData?.user)
+      
+      console.log('userdata', userData.user)
+    }
+  }, [])
+  
+  // console.log(user._id)
 
-    const fetchUsers = async () => {
-      try {
-        // const response = await instance.get(`/api/user/getUserById/${_id}`);
-        // setUser(response.data.data)
+  // const { _id } = user;  
+  
+  // console.log(user)
+  
+  // useEffect(() => {
 
-      } catch (error) {
-        // console.error('Error fetching users:', error.message);
-      }
-    };
-    fetchUsers();
-  }, []);
+  //   const fetchUsers = async () => {
 
-  console.log(user)
+  //     try {
+  //       const response = await instance.get(  `/api/user/getUserById/${user._id}`);
+  //       setUser(response.data.data)
+  //     } catch (error: any) {
+  //       console.error('Error fetching users:', error.message);
+  //     }
+  //   };    
+  //   fetchUsers();
+
+  // }, []);
 
   return (
     <div className="p-[50px]">
       <div className="driver_details_wrapper">
         <div className="bg-[#7155E1] h-[100px] rounded-[8px] relative z-40 flex items-center justify-end mt-[50px]">
-
           <Link href={`/dashboard/driverDetails/${user._id}`}>
             <button className=" p-[8px] text-white rounded-[8px] border border-[white]  m-[15px]"> Edit Profile </button>
           </Link>

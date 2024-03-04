@@ -68,7 +68,7 @@ const Sidebar: React.FC = () => {
   const handleLoggedOut = (e: any) => {
     e.preventDefault()
     localStorage.removeItem('user')
-    router.push('/dashboard')
+    router.push('/')
 
   }
 

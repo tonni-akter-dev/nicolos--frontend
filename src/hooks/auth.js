@@ -18,7 +18,9 @@ const useAuth = () => {
             }
         };
         checkAuth();
+
         return () => {
+
         };
     }, []);
 

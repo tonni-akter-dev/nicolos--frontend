@@ -1,6 +1,7 @@
 'use client'
 import Stats from "@/components/stats/Stats";
 import Head from "next/head";
+import RequireAuth from "../../hooks/RequireAuth";
 
 
 
@@ -17,6 +18,6 @@ const Home = () => {
         <Stats />
       </div>
     </>
-  )
+  ) 
 }
-export default Home
+export default RequireAuth(Home)

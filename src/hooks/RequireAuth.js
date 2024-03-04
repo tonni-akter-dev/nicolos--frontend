@@ -15,7 +15,7 @@ const RequireAuth = (WrappedComponent) => {
     useEffect(() => {
       // Ensure code only runs on the client side
       if (typeof window !== 'undefined' && !loading && !user) {
-        router.push('/login');
+        router.push('/');
       }
     }, [loading, user, router]);
     return <>{user ? <WrappedComponent {...props} /> : null}</>;
