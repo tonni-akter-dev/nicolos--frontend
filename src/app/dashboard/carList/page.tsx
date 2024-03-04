@@ -66,17 +66,15 @@ function CarDetails({ details, handleSelectChange }: any) {
 
                 <div className='flex items-center justify-end gap-2 card_header'>
                     <select name="status" onChange={handleSelectChange} >
-
-                        <option selected={details.status === "Available"} value="Available">Available</option>
-                        <option selected={details.status === "Authorized"} value="Authorized">Authorized</option>
+                        <option selected={details.status === "Available"} value="Available">{details.status}</option>
+                        {/* <option selected={details.status === "Authorized"} value="Authorized">Authorized</option> */}
                     </select>
                 </div>
-                <p>{details.status}</p>
+                {/* <p>{details.status}</p> */}
 
                 <Image height={200} width={200} src={
                     details && details?.image
-                        ? `http://localhost:4000/api/uploads/${details?.image}`
-                        // ? `${apiUrl}/api/uploads/${details?.image}`
+                        ? `http://localhost:8000/api/uploads/${details?.image}`
                         : car
                 } alt="car" />
 
@@ -87,17 +85,18 @@ function CarDetails({ details, handleSelectChange }: any) {
                         <p>VIN Number: <span>{details.vinNumber}</span></p>
                     </div>
                     {
-                        details.status === "Available" &&
-                        <Link href={`/dashboard/authorizationRequest/${details._id}`}><button>Authorized Now</button></Link>
+                        details.status === "Available" ?
+                            <Link href={`/dashboard/authorizationRequest/${details._id}`}><button>Authorized Now</button></Link>
+                            :
+                            <div className="flex justify-between items-center mt-[14px]">
+                                <p className="text-black">Company: {details?.company}</p>
+                                <Link href="/dashboard/driverDetails"><p className="text-black">Driver name: Nicolos</p></Link>
+                            </div>
                     }
-
-                    {
+                    {/* {
                         details.status === 'Authorized' &&
-                        <div className="flex justify-between items-center mt-[14px]">
-                            <p className="text-black">Company: {details?.company}</p>
-                            <Link href="/dashboard/driverDetails"><p className="text-black">Driver name: Nicolos</p></Link>
-                        </div>
-                    }
+                       
+                    } */}
 
                 </div>
             </div>

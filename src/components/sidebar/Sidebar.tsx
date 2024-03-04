@@ -278,16 +278,15 @@ const Sidebar: React.FC = () => {
             </>
             }
 
-
-            {/* {role === "Driver" &&  */}
-            {dropDownManager && (
+            {role === "Manager" && (
               <MenuBtn icon={Car}
                 link="/dashboard/carList"
                 text="Truck Lists"
                 isActive={activeLink === "/dashboard/carList"}
                 onClick={() => setActiveLink("/dashboard/carList")}
-              />)}
-            {/* } */}
+              />
+              )}
+
             <MenuBtn
               icon={Bell}
               link="/dashboard/notification"

@@ -35,13 +35,10 @@ const AddNewCars = () => {
 
     try {
       const response = await instance.post('/api/truck/addNewTrucks', formData);
-
-      console.log(response.data);
-
+      // console.log(response.data);
       toast.success('Truck added successfully')
-
+      form.reset();
     } catch (error: any) {
-      // console.error('Error submitting form:', error.message);
       toast.error('Error', error?.message)
     }
   };
@@ -81,7 +78,7 @@ const AddNewCars = () => {
                     name='image'
                     id='image'
                     style={{ display: 'none' }}
-                    accept="image/jpg, image/png"
+                    accept="image/jpg, image/png, image/jpeg"
 
                   />
                 </div>

@@ -3,9 +3,7 @@ import { useDriverContext } from "@/hooks/driverContext";
 import instance from "@/hooks/instance";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast from "react-hot-toast";
 
 const AuthorizationRequest = () => {
 
@@ -27,7 +25,7 @@ const AuthorizationRequest = () => {
 
 
     const handleDriverSelect = (selectedValue: string) => {
-        const selectedDriverData = driverDataList.find((data:any) => data.fullName === selectedValue);
+        const selectedDriverData = driverDataList.find((data: any) => data.fullName === selectedValue);
         setSelectedDriver(selectedDriverData);
     };
     const router = useParams();
@@ -54,10 +52,9 @@ const AuthorizationRequest = () => {
             try {
                 const response = await instance.get(`/api/truck/getTruckById/${id}`);
                 setTruck(response.data.data)
-                console.log(response)
 
-            } catch (error) {
-                // console.error('Error fetching users:', error.message);
+            } catch (error: any) {
+                console.error('Error fetching users:', error.message);
             }
         };
         fetchUsers();
@@ -76,13 +73,12 @@ const AuthorizationRequest = () => {
             }
 
         } catch (error: any) {
-            // toast.error(`Request failed: ${error.message}`);
+            toast.error(`Request failed: ${error.message}`);
         }
     };
 
     return (
         <>
-            <ToastContainer />
             <div className='container m-auto'>
                 <div className="shadow-card p-[30px]  w-[70%] m-auto">
                     <button>select</button>
@@ -95,6 +91,7 @@ const AuthorizationRequest = () => {
                                 <label htmlFor="">Truck</label>
                                 <input
                                     type="text"
+                                    required
                                     placeholder='Enter company name'
                                     value={truck?.company}
                                 />
@@ -104,6 +101,7 @@ const AuthorizationRequest = () => {
                                 <label htmlFor="">Model</label>
                                 <input
                                     type="text"
+                                    required
                                     placeholder='Enter Truck model'
                                     value={truck?.model}
                                 />
@@ -113,6 +111,7 @@ const AuthorizationRequest = () => {
                                 <label htmlFor="">License Plate </label>
                                 <input
                                     type="text"
+                                    required
                                     placeholder='Enter license plate number'
                                     value={truck?.licensePlate} />
                             </div>
@@ -121,6 +120,7 @@ const AuthorizationRequest = () => {
                                 <label htmlFor="">VIN Number </label>
                                 <input
                                     type="number"
+                                    required
                                     placeholder='Enter VIN Number'
                                     value={truck.vinNumber}
                                 />
@@ -140,6 +140,7 @@ const AuthorizationRequest = () => {
                                 <label htmlFor="">Driver Email</label>
                                 <input
                                     type="email"
+                                    required
                                     value={selectedDriver ? selectedDriver.email : ""}
 
                                 />
@@ -148,6 +149,7 @@ const AuthorizationRequest = () => {
                                 <label htmlFor="">Phone Number</label>
                                 <input
                                     type="number"
+                                    required
                                     value="018254564456456"
                                 />
                             </div>
@@ -159,6 +161,7 @@ const AuthorizationRequest = () => {
                                         </label>
                                         <input
                                             type="file"
+                                            required
                                             ref={imageFileInputRef2}
                                             style={{ display: 'none' }}
                                             onChange={handleImageFileChange2}
@@ -168,6 +171,7 @@ const AuthorizationRequest = () => {
 
                                         <input
                                             type="text"
+                                            required
                                             className="cursor-pointer form-control ps-5"
                                             id="drivingLicense"
                                             name="drivingLicense"
@@ -182,13 +186,15 @@ const AuthorizationRequest = () => {
                             <div className='col-span-6'>
                                 <label htmlFor="">Date of Birth</label>
                                 <input
-                                    type="text"
+                                    required
+                                    type="date"
                                     value={selectedDriver ? selectedDriver.dob : ""}
                                 />
                             </div>
                             <div className='col-span-6'>
                                 <label htmlFor="">Address</label>
                                 <input
+                                    required
                                     type="text"
                                     value={selectedDriver ? selectedDriver.address : ""}
                                 />
@@ -196,7 +202,8 @@ const AuthorizationRequest = () => {
                             <div className='col-span-6'>
                                 <label htmlFor="">License Expiration Date</label>
                                 <input
-                                    type="text"
+                                    required
+                                    type="date"
                                     value={selectedDriver ? selectedDriver.dob : ""}
                                 />
                             </div>
