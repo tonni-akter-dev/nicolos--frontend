@@ -16,7 +16,7 @@ import toast from 'react-hot-toast';
 interface loginType {
     email: string,
     password: string
-}   
+}
 
 const Homepage = () => {
 
@@ -38,23 +38,22 @@ const Homepage = () => {
     };
 
     const handleLogin = async (e: any) => {
-        
         console.log('login button cliecked')
-        
+
         e.preventDefault();
 
         try {
             const response = await instance.post('/api/user/login', formData);
             console.log(response.data);
-            
+
             localStorage.setItem('user', JSON.stringify(response.data))
             toast.success('Login Successfull!')
             router.push('/dashboard')
-        } catch (error: any) {
-            console.error("Login failed:", error);
+        } catch (error) {
+            toast.error("Login failed: Invalid user or password");
         }
     };
-    
+
     return (
         <>
             <div className="w-full mt-[100px] mx-auto">
@@ -114,10 +113,9 @@ const Homepage = () => {
                                     I forgot my password
                                 </Link>
                             </div>
-
                             <button
                                 type="submit"
-                                className="w-full px-8 py-3 text-base font-bold text-white transition ease-in-out bg-black rounded-3xl duration-600 hover:bg-primary-dark ">
+                                className="w-full px-8 py-3 text-base text-white transition ease-in-out bg-black border font-bbg-trold hover: rounded-3xl duration-600 hover:bg-transparent hover:text-black">
                                 Login
                             </button>
                         </form>

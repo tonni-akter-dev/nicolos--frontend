@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import instance from "@/hooks/instance";
 import RequireAuth from "@/hooks/RequireAuth";
+import NoDataFound from "@/components/NoDataFound/NoDataFound";
 
 const carList = () => {
 
@@ -32,15 +33,15 @@ const carList = () => {
         fetchData();
     }, []);
 
-  
+
 
     return (
         <>
             <div className="searchResults">
                 <div className="container mx-[50px] w-full">
                     <div className="grid grid-cols-12 gap-4 lg:grid-cols-4">
-                        {data.map((details) => (
-                            <CarDetails key={details}  details={details} handleSelectChange={handleSelectChange} selectedValue={selectedValue} />
+                        {data.length == 0 ? <NoDataFound /> : data.map((details) => (
+                            <CarDetails key={details} details={details} handleSelectChange={handleSelectChange} selectedValue={selectedValue} />
                         ))}
 
                     </div>
@@ -57,7 +58,7 @@ export default RequireAuth(carList);
 
 
 
-function CarDetails({details,handleSelectChange} : any) {
+function CarDetails({ details, handleSelectChange }: any) {
     return (
 
         <>
@@ -65,13 +66,13 @@ function CarDetails({details,handleSelectChange} : any) {
 
                 <div className='flex items-center justify-end gap-2 card_header'>
                     <select name="status" onChange={handleSelectChange} >
-               
-                        <option selected={details.status === "Available"}  value="Available">Available</option>
+
+                        <option selected={details.status === "Available"} value="Available">Available</option>
                         <option selected={details.status === "Authorized"} value="Authorized">Authorized</option>
                     </select>
                 </div>
                 <p>{details.status}</p>
-                
+
                 <Image height={200} width={200} src={
                     details && details?.image
                         ? `http://localhost:4000/api/uploads/${details?.image}`
@@ -86,12 +87,12 @@ function CarDetails({details,handleSelectChange} : any) {
                         <p>VIN Number: <span>{details.vinNumber}</span></p>
                     </div>
                     {
-                        details.status === "Available"&&
+                        details.status === "Available" &&
                         <Link href={`/dashboard/authorizationRequest/${details._id}`}><button>Authorized Now</button></Link>
                     }
 
                     {
-                         details.status === 'Authorized' &&
+                        details.status === 'Authorized' &&
                         <div className="flex justify-between items-center mt-[14px]">
                             <p className="text-black">Company: {details?.company}</p>
                             <Link href="/dashboard/driverDetails"><p className="text-black">Driver name: Nicolos</p></Link>

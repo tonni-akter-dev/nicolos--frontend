@@ -9,6 +9,7 @@ import login from "../../../public/assets/login.jpg";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import instance from "@/hooks/instance";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const navigate = useRouter();
@@ -45,9 +46,11 @@ const SignUp = () => {
         address: "",
         phoneNumber: "",
       });
+      toast.success('Signup Successfull!')
       navigate.push('/');
-    } catch (error) {
-      // console.error("Registration failed:", error.message);
+
+    } catch (error: any) {
+      toast.success("Registration failed: ", error.message)
     }
   };
 

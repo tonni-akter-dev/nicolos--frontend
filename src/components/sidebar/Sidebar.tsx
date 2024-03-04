@@ -9,11 +9,9 @@ import Settings from "../../../public/assets/Settings.svg";
 import MenuBtn from "../menuBtn/MenuBtn";
 import "./sidebar.scss";
 import { useRouter } from 'next/navigation'
-
 import Link from "next/link";
-
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import instance from "@/hooks/instance";
+
 
 const Sidebar: React.FC = () => {
 
@@ -200,7 +198,6 @@ const Sidebar: React.FC = () => {
                 </div>
 
                 <div className="dropdown_list">
-
                   {dropDownManager && (
                     <ul className="list-disc text-[#fff]" style={{ marginLeft: "50px" }}>
                       <li>
@@ -248,14 +245,10 @@ const Sidebar: React.FC = () => {
 
                       </div>
                   }
-
-
                 </div>
-
                 <div className="dropdown_list">
                   {dropDownCars && (
                     <ul className="list-disc text-[#fff]" style={{ marginLeft: "50px" }}>
-
                       <li className="">
                         <MenuBtn
                           link="/dashboard/drivers"
@@ -285,177 +278,15 @@ const Sidebar: React.FC = () => {
             </>
             }
 
-            {/* <div className="drivers_dropdown" onClick={toggleDropDown}>
-
-                <div className="relative ">
-
-                  <MenuBtn
-                    icon={Car}
-                    text="Owners"
-                    isActive={activeLink === "/Owners"}
-                    onClick={() => setActiveLink("/Owners")}
-                  />
-
-                  {
-                    dropDown ?
-                      <div className="absolute top-[18px] right-[18px]  text-white">
-                        <IoIosArrowUp />
-                      </div> :
-
-                      <div className="absolute top-[18px] right-[18px]  text-white">
-                        <IoIosArrowDown />
-
-                      </div>
-                  }
-                </div>
-
-                <div className="dropdown_list">
-                  {dropDown && (
-                    <ul className="list-disc text-[#fff]" style={{ marginLeft: "50px" }}>
-
-                      <li className="">
-                        <MenuBtn
-                          link="/dashboard/addNewCar"
-                          text="Add New Truck"
-                          isActive={activeLink === "/dashboard/addNewCar"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveLink("/dashboard/addNewCar");
-                          }}
-                        />
-                      </li>
-
-                      <li className="">
-                        <MenuBtn
-                          link="/dashboard/requestedList"
-                          text="Requested Lists"
-                          isActive={activeLink === "/dashboard/requestedList"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveLink("/dashboard/requestedList");
-                          }}
-                        />
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              </div>
-
-              <div className="drivers_dropdown" onClick={toggleDropDownManager}>
-                <div className="relative ">
-                  <MenuBtn
-                    icon={Car}
-                    text="Manager"
-                    isActive={activeLink === "/manager"}
-                    onClick={() => setActiveLink("/manager")}
-                  />
-
-                  {
-                    dropDownManager ?
-                      <div className="absolute top-[18px] right-[18px]  text-white">
-                        <IoIosArrowUp />
-                      </div> :
-
-                      <div className="absolute top-[18px] right-[18px]  text-white">
-                        <IoIosArrowDown />
-
-                      </div>
-                  }
-
-
-                </div>
-
-                <div className="dropdown_list">
-
-                  {dropDownManager && (
-                    <ul className="list-disc text-[#fff]" style={{ marginLeft: "50px" }}>
-                      <li>
-                        <MenuBtn
-                          link="/dashboard/managerProfile"
-                          text="Manager Profile"
-                          isActive={activeLink === "/dashboard/managerProfile"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveLink("/dashboard/managerProfile");
-                          }}
-                        />
-                      </li>
-                      <li className="">
-                        <MenuBtn
-                          link="/dashboard/carOwnerList"
-                          text="Truck Owners List"
-                          isActive={activeLink === "/dashboard/carOwnerList"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveLink("/dashboard/carOwnerList");
-                          }}
-                        />
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              </div>
-              <div className="drivers_dropdown" onClick={toggleDropDownCars}>
-                <div className="relative ">
-                  <MenuBtn
-                    icon={Car}
-                    text="Drivers"
-                    isActive={activeLink === "/driver"}
-                    onClick={() => setActiveLink("/driver")}
-                  />
-                  {
-                    dropDownCars ?
-                      <div className="absolute top-[18px] right-[18px]  text-white">
-                        <IoIosArrowUp />
-                      </div> :
-
-                      <div className="absolute top-[18px] right-[18px]  text-white">
-                        <IoIosArrowDown />
-
-                      </div>
-                  }
-
-
-                </div>
-
-                <div className="dropdown_list">
-                  {dropDownCars && (
-                    <ul className="list-disc text-[#fff]" style={{ marginLeft: "50px" }}>
-
-                      <li className="">
-                        <MenuBtn
-                          link="/dashboard/drivers"
-                          text="Drivers"
-                          isActive={activeLink === "/dashboard/drivers"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveLink("/dashboard/drivers");
-                          }}
-                        />
-                      </li>
-                      <li className="">
-                        <MenuBtn
-                          link="/dashboard/addDriver"
-                          text="Add Driver"
-                          isActive={activeLink === "/dashboard/addDriver"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveLink("/dashboard/addDriver");
-                          }}
-                        />
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              </div> */}
 
             {/* {role === "Driver" &&  */}
-            <MenuBtn icon={Car}
-              link="/dashboard/carList"
-              text="Truck Lists"
-              isActive={activeLink === "/dashboard/carList"}
-              onClick={() => setActiveLink("/dashboard/carList")}
-            />
+            {dropDownManager && (
+              <MenuBtn icon={Car}
+                link="/dashboard/carList"
+                text="Truck Lists"
+                isActive={activeLink === "/dashboard/carList"}
+                onClick={() => setActiveLink("/dashboard/carList")}
+              />)}
             {/* } */}
             <MenuBtn
               icon={Bell}
@@ -482,12 +313,10 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
       <div className="logout">
-        <Link href="/login">
-          <button onClick={handleLoggedOut}>
-            <Image className="logout-icon" src={Logout} alt="Logo" />
-            Logout
-          </button>
-        </Link>
+        <button onClick={handleLoggedOut}>
+          <Image className="logout-icon" src={Logout} alt="Logo" />
+          Logout
+        </button>
       </div>
     </div>
   );
