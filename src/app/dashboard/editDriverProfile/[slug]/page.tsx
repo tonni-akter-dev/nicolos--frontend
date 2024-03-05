@@ -59,11 +59,12 @@ const EditDriverProfile = () => {
     };
 
     const handleSubmit = async (e: any) => {
+
         e.preventDefault();
 
         const formData: any = new FormData();
-        formData.append("image", image || selectedFiles ? selectedFiles[0] : null);
 
+        formData.append("image", image || selectedFiles ? selectedFiles[0] : null);
         formData.append("drivingLicense", drivingLicense || selectedFiles2 ? selectedFiles2[0] : null);
         formData.append("fullName", userData.fullName);
         formData.append("email", userData.email);
@@ -75,17 +76,33 @@ const EditDriverProfile = () => {
 
         try {
             const response = await instance.put(`/api/user/updateUserProfile/${id}`, formData);
+
             console.log(response.data);
+
             toast.success("Profile update successfully!")
-            formData.reset()
+
+            setUserData({
+                fullName: "",
+                email: "",
+                address: "",
+                phoneNumber: "",
+                dob: "",
+                about: "",
+                drivingLicenseExpirationDate: ""
+            });
+            setImage(null);
+            selectedFiles([]);
+            selectedFiles2([]);
+
         } catch (error: any) {
-            // toast.error("Failed to update profile", error.message)
+            toast.error("Failed to update profile", error?.message)
         }
     };
+
     return (
         <>
 
-        
+
             <div className="w-full">
 
                 <form onSubmit={handleSubmit} className="container mx-auto my-[50px]  round-[16px] p-[50px]  shadow-[0 0 20px rgba(89, 102, 122, .05)] ">

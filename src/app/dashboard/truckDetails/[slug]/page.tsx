@@ -38,17 +38,19 @@ const TruckDetails = () => {
                     <p>{trucks?.brand}</p>
                     <div className='flex items-center justify-between car_title'>
                         <h5 className="">Model: {trucks?.model} </h5>
-                        <p>VIN Number: <span>{trucks.vinNumber}</span></p>
+                        <p>VIN Number: <span>{trucks?.vinNumber}</span></p>
                     </div>
                     {
-                        trucks.status === "Available" ?
-                            <Link href={`/dashboard/authorizationRequest/${trucks._id}`}><button>Authorized Now</button></Link>
+                        trucks?.status === "Available" ?
+                            <Link href={`/dashboard/authorizationRequest/${trucks?._id}`}><button>Authorized Now</button></Link>
                             :
                             <div className="flex justify-between items-center mt-[14px]">
                                 <p className="text-black">Company: {trucks?.company}</p>
                                 <Link href="/dashboard/driverDetails"><p className="text-black">Driver name: Nicolos</p></Link>
                             </div>
+                    
                     }
+                     
                 </div>
             </div>
 

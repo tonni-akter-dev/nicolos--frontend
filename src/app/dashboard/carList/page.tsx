@@ -39,8 +39,8 @@ const carList = () => {
             <div className="searchResults">
                 <div className="container mx-[50px] w-full">
                     <div className="grid grid-cols-12 gap-4 lg:grid-cols-4">
-                        {data.length == 0 ? <NoDataFound /> : data.map((details) => (
-                            <CarDetails key={details} details={details} handleSelectChange={handleSelectChange} selectedValue={selectedValue} />
+                        {data.length == 0 ? <NoDataFound /> : data.map((details: any) => (
+                            <CarDetails key={details._id} details={details} handleSelectChange={handleSelectChange} selectedValue={selectedValue} />
                         ))}
 
                     </div>
@@ -65,8 +65,7 @@ function CarDetails({ details, handleSelectChange }: any) {
 
                 <div className='flex items-center justify-end gap-2 card_header'>
                     <select name="status" onChange={handleSelectChange} >
-                        <option selected={details.status === "Available"} value="Available">{details.status}</option>
-                        {/* <option selected={details.status === "Authorized"} value="Authorized">Authorized</option> */}
+                        <option value={details.status}>{details.status}</option>
                     </select>
                 </div>
                 <Link href={`/dashboard/truckDetails/${details?._id}`}>

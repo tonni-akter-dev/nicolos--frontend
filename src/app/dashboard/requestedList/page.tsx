@@ -21,7 +21,7 @@ const customStyles = {
 };
 
 const RequestedList = () => {
-    
+
     const [requestsLists, setRequestsLists] = useState<any>([]);
     const [error, setError] = useState(null);
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -49,6 +49,7 @@ const RequestedList = () => {
     const fetchData = async () => {
         try {
             const response = await instance.get('/api/authorization/allRequest');
+            // console.log('all request',response)
             setRequestsLists(response.data.data);
             console.log(response.data.data.user._id)
         } catch (error: any) {
@@ -56,10 +57,13 @@ const RequestedList = () => {
         }
     };
 
-    const handleSelectChange = async (event: any, requestId: string) => {
-        const newAuthorizationState = event.target.value;
+    const handleSelectChange = async (event: any, requestId: string, userId: string) => {
 
-        console.log(newAuthorizationState); 
+
+        // console.log('userId',userId)
+
+        const newAuthorizationState = event.target.value;
+        console.log(newAuthorizationState);
 
         setSelectedValue(newAuthorizationState);
 
@@ -69,10 +73,11 @@ const RequestedList = () => {
             } else {
                 const response = await instance.put(`/api/authorization/updateAuthorization/${requestId}`, {
                     newAuthorizationState,
+                    userId
                 });
 
                 if (response.data.success) {
-                    setRequestsLists((prevRequests: any ) =>
+                    setRequestsLists((prevRequests: any) =>
                         prevRequests.map((request: any) =>
                             request._id === requestId
                                 ? { ...request, authorizationState: [newAuthorizationState] }
@@ -107,8 +112,6 @@ const RequestedList = () => {
             console.error('Error updating authorization status:', error);
         }
     };
-
-    // console.log(requestsLists)
     return (
         <div>
             <div className="w-full driver_list_wrapper">
@@ -141,7 +144,7 @@ const RequestedList = () => {
                                 <tbody>
                                     {
                                         requestsLists.map((requests: any) => (
-                                            <>
+                                            <div key={requests.trucks._id}>
                                                 <tr className="border-b border-dashed bg-grey-400">
                                                     <td
                                                         scope="row"
@@ -155,17 +158,11 @@ const RequestedList = () => {
                                                     <td className="px-6 py-4">{requests?.user?.fullName}</td>
                                                     <td className="px-6 py-4">{requests?.user?.email}</td>
                                                     <td className="px-6 py-4">{requests?.user?.phoneNumber}</td>
-                                                    {/* <td>
-                                                        <div className="p-2 border rounded-lg w-fit ">
-                                                            <button className="flex items-center gap-2 "> <FaFilePdf className="text-[14px] h-[10px]" />pdf</button>
-                                                        </div>
-                                                    </td> */}
 
                                                     <td className="w-[130px]">
                                                         <select
                                                             className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                                                            // onChange={handleSelectChange}
-                                                            onChange={(e) => handleSelectChange(e, requests._id)}
+                                                            onChange={(e) => handleSelectChange(e, requests._id, requests.user._id)}
                                                             value={requests.authorizationState[0]}
                                                         >
                                                             <option value="choose">Choose</option>
@@ -177,6 +174,7 @@ const RequestedList = () => {
                                                         </select>
 
                                                     </td>
+
                                                 </tr>
                                                 <Modal
                                                     isOpen={modalIsOpen}
@@ -205,7 +203,7 @@ const RequestedList = () => {
                                                     </div>
                                                 </Modal>
 
-                                            </>
+                                            </div>
 
                                         ))
                                     }

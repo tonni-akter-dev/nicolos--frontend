@@ -16,12 +16,11 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
+
   return (
     <html lang="en">
       <TruckProvider>
         <DriverProvider>
-
           <body>
             <Sidebar />
             <div className="lg:ms-[296px] ms-[50px] w-full">

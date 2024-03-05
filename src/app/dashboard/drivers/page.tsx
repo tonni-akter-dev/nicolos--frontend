@@ -5,27 +5,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import instance from "@/hooks/instance";
 
 const Drivers = () => {
 
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await instance.get('/api/user/getAllUser');
-        const allUsers = response.data.data;
+  const fetchUsers = async () => {
+    try {
+      const response = await instance.get('/api/user/getAllUser');
+      const allUsers = response.data.data;
 
-        const driverUsers = allUsers.filter((user: any) => user.role.includes('Driver'));
-        setUsers(driverUsers);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
-    fetchUsers();
-  }, []);
+      const driverUsers = allUsers.filter((user: any) => user.role.includes('Driver'));
+      setUsers(driverUsers);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
+
+
 
   const downloadImage = (imageUrl: any) => {
     const link = document.createElement('a');
@@ -62,7 +61,7 @@ const Drivers = () => {
   const getUserData = async () => {
 
     try {
-      const response = await instance.get(`api/authorization/request/65e58ee80dde925d68b36c0f`);      
+      const response = await instance.get(`api/authorization/request/65e58ee80dde925d68b36c0f`);
       if (response.status !== 200) {
         throw new Error(`Failed to get user data: ${response.statusText}`);
       }
@@ -73,8 +72,14 @@ const Drivers = () => {
       console.error(error.message);
     }
   };
-  getUserData()
 
+  useEffect(() => {
+
+    fetchUsers();
+    getUserData()
+  }, []);
+
+  console.log('users', users)
   return (
 
     <>
@@ -105,7 +110,7 @@ const Drivers = () => {
                   {
                     users.map((user: any) =>
                     (
-                      <tr key={user} className="border-b border-dashed bg-grey-400 dark:border-gray-700">
+                      <tr key={user._id} className="border-b border-dashed bg-grey-400 dark:border-gray-700">
                         <td
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -142,7 +147,8 @@ const Drivers = () => {
                             </button>
                           </div>
                         </td>
-                        <td className="py-4 ">N/A</td>
+                        <td className="py-4 "><Link href={`/dashboard/truckDetails/${user?.assignedTo?.trucks?._id}`}>
+                          {user.assignedTo ? user.assignedTo.trucks.brand : "N/A"}</Link></td>
                         <td className="">
                           <div className="flex items-center gap-2">
                             <Link href={`/dashboard/editDriverProfile/${user._id}`}><button>
