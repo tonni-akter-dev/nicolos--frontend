@@ -5,15 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import instance from "@/hooks/instance";
-import { useParams } from "next/navigation";
 
 const Drivers = () => {
-
-  const { id } = useParams();
-
-  // const { userData, setUser } = useUser(); 
 
   const [users, setUsers] = useState([]);
 
@@ -25,15 +20,12 @@ const Drivers = () => {
 
         const driverUsers = allUsers.filter((user: any) => user.role.includes('Driver'));
         setUsers(driverUsers);
-        console.log(driverUsers)
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     };
     fetchUsers();
   }, []);
-
-  console.log("users", users);
 
   const downloadImage = (imageUrl: any) => {
     const link = document.createElement('a');
@@ -42,6 +34,48 @@ const Drivers = () => {
     link.download = 'driver_image';
     link.click();
   };
+
+
+  const handleDelete = async (userId: any) => {
+
+    try {
+      const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+      if (!confirmDelete) {
+        return;
+      }
+      const response = await instance.delete(`api/user/deleteAUser/${userId}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.status !== 200) {
+        throw new Error(`Failed to delete user: ${response.statusText}`);
+      }
+      const data = response.data;
+      console.log(data);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
+  const getUserData = async () => {
+
+    try {
+      const response = await instance.get(`api/authorization/request/65e58ee80dde925d68b36c0f`);      
+      if (response.status !== 200) {
+        throw new Error(`Failed to get user data: ${response.statusText}`);
+      }
+      const userData = response.data;
+      console.log(userData);
+
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+  getUserData()
+
+
 
   return (
 
@@ -71,7 +105,8 @@ const Drivers = () => {
                 </thead>
                 <tbody>
                   {
-                    users.map((user: any) => (
+                    users.map((user: any) =>
+                    (
                       <tr key={user} className="border-b border-dashed bg-grey-400 dark:border-gray-700">
                         <td
                           scope="row"
@@ -80,11 +115,6 @@ const Drivers = () => {
                           <div className="flex items-center gap-[8px]">
                             <Image
                               className="w-[40px] h-[40px]  rounded-full"
-                              // src={
-                              //   user?.image
-                              //     ? `https://nicolos-backend.onrender.com/api/uploads/${user?.image}`
-                              //     : driver1
-                              // }
                               src={
                                 user?.image
                                   ? `https://nicolos-backend.onrender.com/api/uploads/public/images/${user?.image}`
@@ -104,7 +134,6 @@ const Drivers = () => {
                         <td>
                           <div className="p-2 border rounded-lg w-fit ">
                             <button className="flex items-center gap-2" onClick={() => downloadImage(`https://nicolos-backend.onrender.com/api/uploads/public/images/${user?.drivingLicense}`)}>
-                              {/* <FaFilePdf className="text-[14px] h-[10px]" /> */}
                               <Image
                                 className="w-[40px] h-[40px] rounded-full"
                                 src={user?.drivingLicense ? `https://nicolos-backend.onrender.com/api/uploads/public/images/${user?.drivingLicense}` : driver1}
@@ -118,13 +147,11 @@ const Drivers = () => {
                         <td className="py-4 ">N/A</td>
                         <td className="">
                           <div className="flex items-center gap-2">
-                            <Link href={`/dashboard/editDriverProfile/${user._id}`}><button
-
-                            >
+                            <Link href={`/dashboard/editDriverProfile/${user._id}`}><button>
                               <CiEdit className="text-[24px]" />
                             </button></Link>
 
-                            <button>
+                            <button onClick={() => handleDelete(user._id)}>
                               <MdDelete className="text-[24px]" />
                             </button>
                           </div>
