@@ -260,7 +260,7 @@ const Sidebar: React.FC = () => {
                           }}
                         />
                       </li>
-                      <li className="">
+                      {/* <li className="">
                         <MenuBtn
                           link="/dashboard/addDriver"
                           text="Add Driver"
@@ -270,7 +270,7 @@ const Sidebar: React.FC = () => {
                             setActiveLink("/dashboard/addDriver");
                           }}
                         />
-                      </li>
+                      </li> */}
                     </ul>
                   )}
                 </div>
@@ -285,7 +285,7 @@ const Sidebar: React.FC = () => {
                 isActive={activeLink === "/dashboard/carList"}
                 onClick={() => setActiveLink("/dashboard/carList")}
               />
-              )}
+            )}
 
             <MenuBtn
               icon={Bell}
