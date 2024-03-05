@@ -32,7 +32,7 @@ const carList = () => {
         fetchData();
     }, []);
 
-
+    console.log(data, 'data')
 
     return (
         <>
@@ -69,9 +69,9 @@ function CarDetails({ details, handleSelectChange }: any) {
                     </select>
                 </div>
                 <Link href={`/dashboard/truckDetails/${details?._id}`}>
-                    <Image height={200} width={200} src={
+                    <Image height={400} width={500} className="my-[40px]" src={
                         details && details?.image
-                            ? `https://nicolos-backend.onrender.com/api/uploads/${details?.image}`
+                            ? `http://localhost:4000/api/uploads/${details?.image}`
                             : car
                     } alt="car" />
                 </Link>
@@ -92,7 +92,7 @@ function CarDetails({ details, handleSelectChange }: any) {
                             </div>
                     }
                 </div>
-            </div >
+            </div>
         </>
     )
 }

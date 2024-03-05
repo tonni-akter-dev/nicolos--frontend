@@ -49,7 +49,6 @@ const RequestedList = () => {
     const fetchData = async () => {
         try {
             const response = await instance.get('/api/authorization/allRequest');
-            // console.log('all request',response)
             setRequestsLists(response.data.data);
             console.log(response.data.data.user._id)
         } catch (error: any) {
@@ -58,7 +57,6 @@ const RequestedList = () => {
     };
 
     const handleSelectChange = async (event: any, requestId: string, userId: string) => {
-
 
         // console.log('userId',userId)
 
@@ -144,8 +142,8 @@ const RequestedList = () => {
                                 <tbody>
                                     {
                                         requestsLists.map((requests: any) => (
-                                            <div key={requests.trucks._id}>
-                                                <tr className="border-b border-dashed bg-grey-400">
+                                            <>
+                                                <tr key={requests.trucks._id} className="border-b border-dashed bg-grey-400">
                                                     <td
                                                         scope="row"
                                                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
@@ -203,7 +201,7 @@ const RequestedList = () => {
                                                     </div>
                                                 </Modal>
 
-                                            </div>
+                                            </>
 
                                         ))
                                     }
