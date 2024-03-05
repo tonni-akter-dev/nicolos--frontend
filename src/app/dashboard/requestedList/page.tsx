@@ -50,6 +50,7 @@ const RequestedList = () => {
         try {
             const response = await instance.get('/api/authorization/allRequest');
             setRequestsLists(response.data.data);
+            console.log(response.data.data.user._id)
         } catch (error: any) {
             setError(error?.response?.data?.error_message || 'An error occurred');
         }

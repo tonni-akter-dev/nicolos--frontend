@@ -75,8 +75,6 @@ const Drivers = () => {
   };
   getUserData()
 
-
-
   return (
 
     <>

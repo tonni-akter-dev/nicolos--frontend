@@ -49,7 +49,7 @@ const DriverDetails = () => {
             <Image width={180} height={100} className="w-[180px] mt-[-60px] rounded-[14px] ms-[35px]"
               src={
                 user && user?.image
-                  ? `https://nicolos-backend.onrender.com/api/uploads/public/images/${user?.image}`
+                  ? `https://nicolos-backend.onrender.com/api/uploads/${user?.image}`
                   : profile
               }
               alt="" />

@@ -69,11 +69,13 @@ function CarDetails({ details, handleSelectChange }: any) {
                         {/* <option selected={details.status === "Authorized"} value="Authorized">Authorized</option> */}
                     </select>
                 </div>
-                <Image height={200} width={200} src={
-                    details && details?.image
-                        ? `https://nicolos-backend.onrender.com/api/uploads/${details?.image}`
-                        : car
-                } alt="car" />
+                <Link href={`/dashboard/truckDetails/${details?._id}`}>
+                    <Image height={200} width={200} src={
+                        details && details?.image
+                            ? `https://nicolos-backend.onrender.com/api/uploads/${details?.image}`
+                            : car
+                    } alt="car" />
+                </Link>
 
                 <div className="card_body">
                     <p>{details?.brand}</p>
@@ -91,7 +93,7 @@ function CarDetails({ details, handleSelectChange }: any) {
                             </div>
                     }
                 </div>
-            </div>
+            </div >
         </>
     )
 }
