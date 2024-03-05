@@ -61,8 +61,9 @@ const AuthorizationRequest = () => {
     }, [id]);
 
     const handleSubmit = async (e: any) => {
+        
         e.preventDefault();
-
+        
         try {
             const response = await instance.post("/api/authorization/addNewRequest", data);
 
@@ -122,7 +123,7 @@ const AuthorizationRequest = () => {
                                     type="number"
                                     required
                                     placeholder='Enter VIN Number'
-                                    value={truck.vinNumber}
+                                    value={truck?.vinNumber}
                                 />
                             </div>
                             <div className='col-span-6'>
@@ -130,8 +131,8 @@ const AuthorizationRequest = () => {
                                 <select onChange={(e) => handleDriverSelect(e.target.value)} id="countries" className="border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                                     <option selected>Choose</option>
                                     {driverDataList.map((data: any) => (
-                                        <option key={data._id} value={data.fullName}>
-                                            {data.fullName}
+                                        <option key={data._id} value={data?.fullName}>
+                                            {data?.fullName}
                                         </option>
                                     ))}
                                 </select>
@@ -188,7 +189,7 @@ const AuthorizationRequest = () => {
                                 <input
                                     required
                                     type="date"
-                                    value={selectedDriver ? selectedDriver.dob : ""}
+                                    // value={selectedDriver ? selectedDriver.dob : ""}
                                 />
                             </div>
                             <div className='col-span-6'>
@@ -196,7 +197,7 @@ const AuthorizationRequest = () => {
                                 <input
                                     required
                                     type="text"
-                                    value={selectedDriver ? selectedDriver.address : ""}
+                                    value={selectedDriver ? selectedDriver?.address : ""}
                                 />
                             </div>
                             <div className='col-span-6'>
@@ -204,7 +205,7 @@ const AuthorizationRequest = () => {
                                 <input
                                     required
                                     type="date"
-                                    value={selectedDriver ? selectedDriver.dob : ""}
+                                    // value={selectedDriver ? selectedDriver.dob : ""}
                                 />
                             </div>
                             <div className='col-span-6'>

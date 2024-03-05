@@ -14,6 +14,7 @@ const Drivers = () => {
   const { id } = useParams();
 
   // const { userData, setUser } = useUser(); 
+  
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -82,7 +83,7 @@ const Drivers = () => {
 
                               src={
                                 user?.image
-                                  ? `https://nicolos-backend.onrender.com/api/uploads/public/images/${user?.image}`
+                                  ? `https://nicolos-backend.onrender.com/api/uploads/${user?.image}`
                                   : driver1
                               }
                               width={50}
@@ -113,7 +114,9 @@ const Drivers = () => {
                         <td className="py-4 ">Ferrari (Model-10)</td>
                         <td className="">
                           <div className="flex items-center gap-2">
-                            <Link href={`/dashboard/editDriverProfile/${user._id}`}><button>
+                            <Link href={`/dashboard/editDriverProfile/${user._id}`}><button
+                            
+                            >
                               <CiEdit className="text-[24px]" />
                             </button></Link>
 

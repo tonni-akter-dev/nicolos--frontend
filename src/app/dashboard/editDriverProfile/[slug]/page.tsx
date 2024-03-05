@@ -79,11 +79,13 @@ const EditDriverProfile = () => {
             toast.success("Profile update successfully!")
             formData.reset()
         } catch (error: any) {
-            toast.error("Failed to update profile", error.message)
+            // toast.error("Failed to update profile", error.message)
         }
     };
     return (
         <>
+
+        
             <div className="w-full">
 
                 <form onSubmit={handleSubmit} className="container mx-auto my-[50px]  round-[16px] p-[50px]  shadow-[0 0 20px rgba(89, 102, 122, .05)] ">
