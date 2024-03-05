@@ -32,7 +32,7 @@ const carList = () => {
         fetchData();
     }, []);
 
-    console.log(data, 'data')
+
 
     return (
         <>
@@ -65,16 +65,17 @@ function CarDetails({ details, handleSelectChange }: any) {
 
                 <div className='flex items-center justify-end gap-2 card_header'>
                     <select name="status" onChange={handleSelectChange} >
-                        <option value={details.status}>{details.status}</option>
+                        <option selected={details.status == "Available"}>Available</option>
                     </select>
                 </div>
                 <Link href={`/dashboard/truckDetails/${details?._id}`}>
                     <Image height={400} width={500} className="my-[40px]" src={
                         details && details?.image
-                            ? `http://localhost:4000/api/uploads/${details?.image}`
+                            ? `https://nicolos-backend.onrender.com/api/uploads/${details?.image}`
                             : car
                     } alt="car" />
                 </Link>
+
 
                 <div className="card_body">
                     <p>{details?.brand}</p>
@@ -92,7 +93,7 @@ function CarDetails({ details, handleSelectChange }: any) {
                             </div>
                     }
                 </div>
-            </div>
+            </div >
         </>
     )
 }
